@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prof. Huzai 虎仔 | Imperial College London</title>
+  <link rel="icon" type="image/png" href="photos/ai-crest-hz.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #003366;
+      --navy-dark: #001f40;
+      --navy-mid: #1a4a7a;
+      --gold: #c8a96e;
+      --gold-light: #e8d5a8;
+      --cream: #f5f0e8;
+      --cream-white: #fffdf9;
+      --text: #1a1a2e;
+      --text-mid: #3d3d5c;
+      --text-light: #7a7a9a;
+      --border: #d0c8b8;
+      --red-accent: #9e2a2b;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    /* ===== HEADER / NAV ===== */
+    .site-header {
+      background: var(--navy-dark);
+      color: white;
+      border-bottom: 3px solid var(--gold);
+    }
+    .header-top {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 14px 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .imperial-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'EB Garamond', serif;
+      font-size: 13px;
+      color: var(--gold-light);
+      letter-spacing: 0.03em;
+      opacity: 0.9;
+    }
+    .imperial-logo img { flex-shrink: 0; width: 22px; height: 22px; object-fit: contain; }
+    .header-divider { width: 1px; height: 30px; background: rgba(255,255,255,0.2); }
+    .header-dept {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .header-main {
+      padding: 24px 40px 0;
+      display: flex;
+      align-items: flex-end;
+      gap: 28px;
+    }
+    .header-photo {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      object-fit: cover;
+      object-position: center top;
+      flex-shrink: 0;
+      margin-bottom: -1px;
+    }
+    .header-info { padding-bottom: 12px; }
+    .header-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: white;
+      line-height: 1.1;
+    }
+    .header-name .chinese { font-size: 22px; color: var(--gold); margin-left: 8px; font-style: italic; }
+    .header-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 15px;
+      color: var(--gold-light);
+      margin-top: 4px;
+      font-style: italic;
+    }
+    .header-affil {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 3px;
+      letter-spacing: 0.03em;
+    }
+
+    /* ===== TAB NAV ===== */
+    .tab-nav {
+      display: flex;
+      gap: 0;
+      padding: 0 40px;
+      margin-top: 14px;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.55);
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 10px 18px;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .tab-btn:hover { color: rgba(255,255,255,0.85); }
+    .tab-btn.active {
+      color: white;
+      border-bottom-color: var(--gold);
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .site-main { max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ===== SECTION TITLES ===== */
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--navy);
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 8px;
+      margin-bottom: 24px;
+      margin-top: 40px;
+    }
+    .section-title:first-child { margin-top: 0; }
+
+    /* ===== HOME / ABOUT ===== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 36px;
+      align-items: start;
+    }
+    .about-sidebar {}
+    .about-photo-main {
+      width: 100%;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      display: block;
+    }
+    .photo-caption {
+      font-size: 11px;
+      color: var(--text-light);
+      text-align: center;
+      margin-top: 6px;
+      font-style: italic;
+    }
+    .contact-card {
+      background: var(--cream-white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 14px;
+      margin-top: 16px;
+      font-size: 13px;
+    }
+    .contact-card .label {
+      font-weight: 600;
+      color: var(--navy);
+      display: block;
+      margin-bottom: 8px;
+      font-family: 'EB Garamond', serif;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .contact-row { display: flex; gap: 8px; margin-bottom: 5px; align-items: flex-start; }
+    .contact-icon { color: var(--navy); width: 14px; flex-shrink: 0; margin-top: 1px; }
+    .contact-val { color: var(--text-mid); font-size: 12.5px; line-height: 1.4; }
+    .badge-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+    .badge {
+      background: var(--navy);
+      color: white;
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 2px;
+      letter-spacing: 0.04em;
+      font-weight: 600;
+    }
+    .about-body {}
+    .about-bio {
+      font-family: 'EB Garamond', serif;
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .about-bio p { margin-bottom: 14px; }
+    .crack {
+      display: inline-block;
+      background: var(--gold-light);
+      border: 1px solid var(--gold);
+      border-radius: 2px;
+      padding: 0 4px;
+      font-size: 13px;
+      color: var(--navy);
+      cursor: help;
+      position: relative;
+      font-family: 'Source Sans 3', sans-serif;
+      font-style: normal;
+    }
+    .crack::after {
+      content: attr(data-note);
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff8e6;
+      border: 1px solid var(--gold);
+      border-radius: 4px;
+      padding: 6px 10px;
+      font-size: 12px;
+      white-space: nowrap;
+      color: #5a3d00;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+      z-index: 100;
+      font-style: normal;
+    }
+    .crack:hover::after { opacity: 1; }
+
+    .interests-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .interest-tag {
+      background: var(--cream-white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 13px;
+      color: var(--navy-mid);
+      font-family: 'EB Garamond', serif;
+      font-size: 15px;
+    }
+
+    /* ===== NEWS ===== */
+    .news-item {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 20px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .news-date {
+      font-family: 'EB Garamond', serif;
+      font-size: 13px;
+      color: var(--text-light);
+      text-align: right;
+      line-height: 1.4;
+    }
+    .news-date .year { display: block; font-size: 11px; }
+    .news-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 2px;
+      margin-bottom: 5px;
+    }
+    .tag-award { background: #fff3cd; color: #856404; }
+    .tag-talk { background: #d1ecf1; color: #0c5460; }
+    .tag-pub { background: #d4edda; color: #155724; }
+    .tag-media { background: #f8d7da; color: #721c24; }
+    .news-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .news-desc { font-size: 13px; color: var(--text-mid); line-height: 1.5; }
+
+    /* ===== RESEARCH ===== */
+    .paper-card {
+      background: var(--cream-white);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--navy);
+      border-radius: 0 4px 4px 0;
+      padding: 16px 20px;
+      margin-bottom: 16px;
+    }
+    .paper-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .paper-authors { font-size: 13px; color: var(--text-mid); margin-bottom: 4px; }
+    .paper-venue { font-size: 12px; color: var(--text-light); font-style: italic; margin-bottom: 8px; }
+    .paper-abstract { font-size: 13px; color: var(--text-mid); line-height: 1.55; margin-bottom: 10px; }
+    .paper-links { display: flex; gap: 10px; }
+    .paper-link {
+      font-size: 12px;
+      color: var(--navy);
+      text-decoration: none;
+      border: 1px solid var(--navy);
+      padding: 3px 10px;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .paper-link:hover { background: var(--navy); color: white; }
+
+    .research-area {
+      background: var(--cream-white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 16px 20px;
+      margin-bottom: 14px;
+    }
+    .research-area h4 {
+      font-family: 'EB Garamond', serif;
+      font-size: 17px;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .research-area p { font-size: 13.5px; color: var(--text-mid); line-height: 1.55; }
+
+    /* ===== TEACHING ===== */
+    .course-card {
+      background: var(--cream-white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 18px 22px;
+      margin-bottom: 14px;
+    }
+    .course-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+    .course-code {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--navy);
+      background: var(--cream);
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      border-radius: 2px;
+    }
+    .course-term { font-size: 12px; color: var(--text-light); }
+    .course-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .course-desc { font-size: 13.5px; color: var(--text-mid); line-height: 1.55; margin-bottom: 10px; }
+    .testimonial {
+      background: var(--cream);
+      border-left: 3px solid var(--gold);
+      padding: 10px 14px;
+      margin-top: 10px;
+      font-size: 13px;
+      font-style: italic;
+      color: var(--text-mid);
+    }
+    .testimonial cite { font-style: normal; font-size: 11px; color: var(--text-light); display: block; margin-top: 4px; }
+
+    /* ===== GALLERY ===== */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .gallery-item { position: relative; overflow: hidden; border-radius: 3px; aspect-ratio: 1; }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-item .overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,20,50,0.75));
+      padding: 20px 10px 8px;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .gallery-item:hover .overlay { opacity: 1; }
+    .overlay-text { font-size: 12px; color: white; font-style: italic; }
+    .gallery-item.wide { aspect-ratio: 2/1; grid-column: span 2; }
+    .gallery-item.tall { aspect-ratio: 1/2; grid-row: span 2; }
+
+    /* ===== FRIENDS ===== */
+    .friends-intro {
+      font-family: 'EB Garamond', serif;
+      font-size: 17px;
+      color: var(--text-mid);
+      font-style: italic;
+      margin-bottom: 28px;
+      line-height: 1.7;
+    }
+    .friends-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .friend-card {
+      background: var(--cream-white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .friend-card:hover { box-shadow: 0 4px 16px rgba(0,30,80,0.1); }
+    .friend-photo {
+      width: 100%;
+      aspect-ratio: 1;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-light);
+      font-size: 12px;
+      font-style: italic;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .friend-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .friend-info { padding: 12px 14px; }
+    .friend-name {
+      font-family: 'EB Garamond', serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 2px;
+    }
+    .friend-species { font-size: 11px; color: var(--text-light); margin-bottom: 6px; letter-spacing: 0.03em; }
+    .friend-desc { font-size: 12.5px; color: var(--text-mid); line-height: 1.5; }
+
+    /* ===== CV / CONTACT ===== */
+    .cv-section { margin-bottom: 32px; }
+    .cv-entry {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .cv-years { font-size: 13px; color: var(--text-light); font-family: 'EB Garamond', serif; padding-top: 2px; }
+    .cv-title-text {
+      font-family: 'EB Garamond', serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .cv-place { font-size: 13px; color: var(--text-mid); margin-top: 2px; }
+    .cv-note { font-size: 12px; color: var(--text-light); margin-top: 3px; font-style: italic; }
+
+    .contact-form-section {
+      background: var(--cream-white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 28px 32px;
+      max-width: 520px;
+    }
+    .form-row { margin-bottom: 16px; }
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .form-input, .form-textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 9px 12px;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 14px;
+      background: white;
+      color: var(--text);
+      transition: border-color 0.2s;
+    }
+    .form-input:focus, .form-textarea:focus { outline: none; border-color: var(--navy); }
+    .form-textarea { resize: vertical; min-height: 110px; }
+    .form-submit {
+      background: var(--navy);
+      color: white;
+      border: none;
+      padding: 10px 28px;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .form-submit:hover { background: var(--navy-mid); }
+
+    /* ===== FOOTER ===== */
+    .site-footer {
+      background: var(--navy-dark);
+      color: rgba(255,255,255,0.4);
+      font-size: 11px;
+      text-align: center;
+      padding: 20px 40px;
+      line-height: 1.8;
+      border-top: 2px solid var(--gold);
+    }
+    .site-footer a { color: rgba(255,255,255,0.3); }
+    .footer-whisper {
+      font-size: 9.5px;
+      color: rgba(255,255,255,0.15);
+      margin-top: 4px;
+      letter-spacing: 0.03em;
+    }
+
+    /* ===== MODAL ===== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,15,40,0.7);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: var(--cream-white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 32px;
+      max-width: 420px;
+      width: 90%;
+      position: relative;
+      text-align: center;
+    }
+    .modal-close {
+      position: absolute;
+      top: 10px; right: 14px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: var(--text-light);
+    }
+    .modal-emoji { font-size: 40px; margin-bottom: 12px; }
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .modal-body { font-size: 14px; color: var(--text-mid); line-height: 1.65; }
+    .modal-note {
+      font-size: 12px;
+      color: var(--text-light);
+      font-style: italic;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ===== MISC ===== */
+    .alert-box {
+      background: #fff8e1;
+      border: 1px solid #ffe082;
+      border-radius: 4px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: #5d4037;
+      margin-bottom: 24px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .redacted {
+      background: #1a1a2e;
+      color: #1a1a2e;
+      border-radius: 2px;
+      padding: 0 4px;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+      user-select: none;
+    }
+    .redacted:hover { background: var(--gold-light); color: var(--text); }
+
+    .secret-link {
+      color: var(--cream);
+      text-decoration: none;
+      transition: color 0.3s;
+      font-size: 10px;
+    }
+    .secret-link:hover { color: var(--gold); }
+
+    @media (max-width: 680px) {
+      .header-top { padding: 12px 16px; }
+      .header-main { padding: 16px 16px 0; }
+      .tab-nav { padding: 0 8px; overflow-x: auto; }
+      .tab-btn { padding: 10px 12px; font-size: 11px; }
+      .site-main { padding: 28px 16px 60px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-sidebar { display: flex; gap: 16px; align-items: flex-start; }
+      .about-photo-main { width: 120px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .friends-grid { grid-template-columns: repeat(2, 1fr); }
+      .cv-entry { grid-template-columns: 90px 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== SITE HEADER ===== -->
+<header class="site-header">
+  <div class="header-top">
+    <div class="imperial-logo">
+      <img src="photos/ai-crest-hz.png" alt="Huzai crest" />
+      Imperial College London
+    </div>
+    <div class="header-divider"></div>
+    <div class="header-dept">Department of Physics · Faculty of Natural Sciences</div>
+  </div>
+  <div class="header-main">
+    <img class="header-photo" src="photos/ai-desk-portrait.png" alt="Professor Huzai" />
+    <div class="header-info">
+      <div class="header-name">
+        Professor Huzai <span class="chinese">虎仔</span>
+      </div>
+      <div class="header-title">Distinguished Professor of Physics &amp; Quantum Sciences</div>
+      <div class="header-affil">Imperial College London · South Kensington, London SW7 2AZ</div>
+    </div>
+  </div>
+  <nav class="tab-nav" role="tablist">
+    <button class="tab-btn active" data-tab="about" role="tab">About</button>
+    <button class="tab-btn" data-tab="news" role="tab">News</button>
+    <button class="tab-btn" data-tab="research" role="tab">Research</button>
+    <button class="tab-btn" data-tab="teaching" role="tab">Teaching</button>
+    <button class="tab-btn" data-tab="gallery" role="tab">Gallery</button>
+    <button class="tab-btn" data-tab="friends" role="tab">Friends &amp; Colleagues</button>
+    <button class="tab-btn" data-tab="contact" role="tab">CV &amp; Contact</button>
+  </nav>
+</header>
+
+<!-- ===== MAIN ===== -->
+<main class="site-main">
+
+  <!-- ===== ABOUT ===== -->
+  <section class="tab-panel active" id="tab-about" role="tabpanel">
+    <div class="about-grid">
+      <div class="about-sidebar">
+        <img class="about-photo-main" src="photos/ai-cafe-rain.png" alt="Prof. Huzai in a London café" />
+        <p class="photo-caption">Prof. Huzai reviewing manuscripts<br /><em>（Somewhere in London, presumably）</em></p>
+        <div style="margin-top:10px;border-radius:4px;overflow:hidden;border:1px solid var(--border)">
+          <img src="photos/ai-medallion.png" alt="Faculty crest" style="width:100%;display:block;background:#001f40;padding:8px;object-fit:contain" />
+          <p style="font-size:10px;color:var(--text-light);text-align:center;padding:5px;font-style:italic;background:var(--cream-white)">Official faculty crest · Department of Physics</p>
+        </div>
+        <div class="contact-card">
+          <span class="label">Contact</span>
+          <div class="contact-row">
+            <span class="contact-icon">✉</span>
+            <span class="contact-val">h.huzai@imperial.ac.uk<br /><span style="font-size:11px;color:#aaa">(replies within 3–5 nap cycles)</span></span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-icon">📍</span>
+            <span class="contact-val">Room <span class="crack" data-note="🤔 ...we checked. There is no Room 502B.">502B</span>, Blackett Laboratory</span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-icon">📞</span>
+            <span class="contact-val"><span class="redacted" title="click to reveal">+44 20 XXXX XXXX</span></span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-icon">🌐</span>
+            <span class="contact-val">huzai.uk</span>
+          </div>
+          <div class="badge-row">
+            <span class="badge">FRS</span>
+            <span class="badge">PhD</span>
+            <span class="badge crack" data-note="⚠️ We cannot locate any record of this award.">OBE</span>
+            <span class="badge">FIET</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-body">
+        <h2 class="section-title">Biography</h2>
+        <div class="about-bio">
+          <p>
+            Professor Huzai (虎仔) is a Distinguished Professor of Physics and Quantum Sciences at <strong>Imperial College London</strong>, where he has led the <em>Laboratory for Advanced Theoretical Everything</em> since <span class="crack" data-note="🧐 Hm. Imperial College was founded in 1907. This seems fine, actually.">2019</span>. He is widely regarded as one of the foremost authorities on quantum field dynamics, soft-matter physics, and <span class="crack" data-note="💭 ...Is 'sofa topology' a real field? Nobody on the faculty seems to know.">sofa topology</span>.
+          </p>
+          <p>
+            Born in <span class="crack" data-note="🏷️ His label says: Made in China. We are not saying anything.">the rolling hills of the English countryside</span>, Professor Huzai demonstrated an extraordinary aptitude for science from an early age. He completed his undergraduate studies at Oxford <span class="crack" data-note="🙈 Oxford has no record of this enrolment. When pressed, he became very quiet and looked at the floor.">with a starred First</span>, before pursuing his doctorate at Cambridge under the legendary Professor <span class="crack" data-note="😶 We contacted Prof. Stuffingworth. He said he has never met Huzai.">Sir Edmund Stuffingworth</span>.
+          </p>
+          <p>
+            His research has appeared in <em>Nature</em>, <em>Physical Review Letters</em>, and <em>The Journal of Things That Sound Important</em>. In 2023, he was awarded the <span class="crack" data-note="🔍 We searched extensively. This award does not appear to exist.">Featherstone Medal for Distinguished Contribution to British Science</span>, an honour he accepts with characteristic modesty. "It was nothing, really," he is reported to have said. "Though I must say I deserved it."
+          </p>
+          <p style="font-style:italic; color: var(--text-mid); font-size: 16px;">
+            他同时也精通中英双语，并声称曾在剑桥大学开设过全英文量子物理课程。<span class="crack" data-note="😬 我们请他演示了一下。他沉默了很久，然后说："那个……那时候的讲义找不到了。"">（课程评分：满分5分。）</span>
+          </p>
+        </div>
+
+        <h2 class="section-title">Research Interests</h2>
+        <div class="interests-list">
+          <span class="interest-tag">Quantum Field Theory</span>
+          <span class="interest-tag">Soft Matter &amp; Stuffing Dynamics</span>
+          <span class="interest-tag crack" data-note="🤔 This is not a recognised discipline.">Nap Science</span>
+          <span class="interest-tag">Condensed Matter Physics</span>
+          <span class="interest-tag">Sofa Topology</span>
+          <span class="interest-tag">String Theory <span style="font-size:11px;color:#999">(the toy kind)</span></span>
+          <span class="interest-tag">Theoretical Biology</span>
+          <span class="interest-tag crack" data-note="🐾 We are not entirely sure what this means.">Applied Pawodynamics</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NEWS ===== -->
+  <section class="tab-panel" id="tab-news" role="tabpanel">
+    <div class="alert-box">
+      📢 <span>Professor Huzai's office hours have been temporarily suspended while he <span class="crack" data-note="🛋️ He was found on the sofa. He appeared comfortable.">attends an international symposium in Geneva</span>. He will return when ready.</span>
+    </div>
+    <div style="float:right;margin:0 0 24px 28px;width:200px;border-radius:4px;overflow:hidden;border:1px solid var(--border)">
+      <img src="photos/ai-awards.png" alt="Huzai with awards" style="width:100%;display:block" />
+      <p style="font-size:11px;color:var(--text-light);text-align:center;padding:6px;font-style:italic;background:var(--cream-white)">Professor Huzai with his awards. "1st in the UK." He arranged these himself.</p>
+    </div>
+
+    <h2 class="section-title">Recent News &amp; Updates</h2>
+
+    <div class="news-item">
+      <div class="news-date">Apr 2025 <span class="year">2025</span></div>
+      <div>
+        <span class="news-tag tag-award">Award</span>
+        <div class="news-title">Professor Huzai named <span class="crack" data-note="🏆 The prize consists of a certificate printed at Tesco and one treat. He was extremely pleased.">Scientist of the Year</span> by the British Academy of Fuzzy Sciences</div>
+        <div class="news-desc">We are delighted to announce that Professor Huzai has received the BAFS's highest honour for his "unparalleled contributions to the field and general demeanour." He thanked his colleagues and reminded everyone that he had predicted this outcome three years ago.</div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date">Feb 2025 <span class="year">2025</span></div>
+      <div>
+        <span class="news-tag tag-talk">Talk</span>
+        <div class="news-title">Invited keynote at the <span class="crack" data-note="😶 The venue of this conference is listed as 'the living room'. It is unclear how many attendees there were.">15th International Symposium on Advanced Quantum Dynamics</span></div>
+        <div class="news-desc">Professor Huzai delivered what witnesses described as "a very confident lecture." The title of the talk was "Beyond the Standard Model: What I Think Is Going On." Slides are available upon request. <span style="font-size:12px;color:#aaa">(He has not responded to requests yet.)</span></div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date">Dec 2024 <span class="year">2024</span></div>
+      <div>
+        <span class="news-tag tag-pub">Publication</span>
+        <div class="news-title">New paper: "On the Thermodynamic Efficiency of Extended Horizontal Repose in Soft-Bodied Systems"</div>
+        <div class="news-desc">Accepted to <em>Journal of Theoretical and Applied Lounging</em> (Impact Factor: <span class="crack" data-note="🔎 We could not find this journal in any database.">12.7</span>). The paper proposes a new mathematical framework for understanding why lying down feels so good. Peer review was described as "enthusiastic."</div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date">Sep 2024 <span class="year">2024</span></div>
+      <div>
+        <span class="news-tag tag-media">Media</span>
+        <div class="news-title">Featured in <span class="crack" data-note="📰 We searched the BBC archives thoroughly. Nothing came up.">BBC Science Focus</span> — "The Most Interesting Scientists in Britain Right Now"</div>
+        <div class="news-desc">Professor Huzai was profiled for his pioneering work and "extraordinary eyes that seem to contain multitudes." He was quoted as saying: "Science is my passion. Also, treats." The article has since <span class="crack" data-note="🔮 Alternatively: it never existed.">been archived</span>.</div>
+      </div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date">May 2024 <span class="year">2024</span></div>
+      <div>
+        <span class="news-tag tag-award">Award</span>
+        <div class="news-title">Elected Fellow of the Royal Society <span class="crack" data-note="👀 The Royal Society was contacted. They were polite but confused.">（英国皇家学会院士）</span></div>
+        <div class="news-desc">Professor Huzai joins an illustrious list of Fellows including Newton, Darwin, and Hawking. He was nominated by himself. "The committee recognised what I have been saying for years," he stated. His acceptance speech lasted forty minutes and included several digressions about afternoon light.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESEARCH ===== -->
+  <section class="tab-panel" id="tab-research" role="tabpanel">
+    <h2 class="section-title">Research Overview</h2>
+    <p style="font-family:'EB Garamond',serif;font-size:17px;line-height:1.75;margin-bottom:28px;color:var(--text-mid)">
+      Professor Huzai's research spans the full spectrum of modern theoretical physics, from the deepest questions of quantum gravity to the <span class="crack" data-note="😌 This is the majority of his research output.">practical optimisation of resting positions</span>. His lab at Imperial brings together a multidisciplinary team of <span class="crack" data-note="🧸 The 'team' is, as far as we can tell, entirely composed of plush toys.">leading researchers</span> to tackle the most pressing unsolved problems in science.
+    </p>
+
+    <div class="research-area">
+      <h4>Quantum Stuffing Dynamics <span class="crack" data-note="🤨 Not in any textbook we could find." style="font-size:13px">(?)</span></h4>
+      <p>We study the quantum-mechanical behaviour of high-density fibrous systems under gravitational compression — with particular focus on what happens when you sit on something that looked comfortable but wasn't. Funded by the <span class="crack" data-note="💸 Grant application status: pending. Since 2021.">EPSRC Strategic Grand Challenge Programme</span>.</p>
+    </div>
+
+    <div class="research-area">
+      <h4>Sofa Topology &amp; Boundary Layer Theory</h4>
+      <p>A mathematical investigation into the geometry of soft surfaces, with applications to optimal placement and the curious phenomenon of not being able to find the TV remote. Three PhD students are currently enrolled in this programme. <span class="crack" data-note="🐻 The three students are named Bearbear, Froggy, and Unnamed Rabbit.">（目前课题组有三名博士生。）</span></p>
+    </div>
+
+    <div class="research-area">
+      <h4>Applied Pawodynamics</h4>
+      <p>A new field pioneered exclusively by Professor Huzai, concerning the fluid dynamics of paw-mediated object interaction. Initial results suggest that <span class="crack" data-note="🐾 This 'result' was demonstrated by knocking a cup off a table.">certain surfaces exhibit non-trivial toppling coefficients</span>. A monograph is in preparation.</p>
+    </div>
+
+    <h2 class="section-title">Selected Publications</h2>
+
+    <div class="paper-card">
+      <div class="paper-title">"On the Thermodynamic Efficiency of Extended Horizontal Repose in Soft-Bodied Systems"</div>
+      <div class="paper-authors"><strong>Huzai</strong> (2024)</div>
+      <div class="paper-venue"><em>Journal of Theoretical and Applied Lounging</em>, Vol. 14, pp. 1–38 · <span class="crack" data-note="🔍 This journal does not appear in Scopus, Web of Science, or Google Scholar.">IF: 12.7</span></div>
+      <div class="paper-abstract">We present a unified thermodynamic framework for the efficiency gains associated with voluntary horizontal repose ("lying down") in soft-bodied mammalian systems. Results indicate that efficiency peaks at approximately 98.6% during deep afternoon nap cycles, with diminishing returns after 4pm. <strong>Conclusion:</strong> science confirms that napping is correct.</div>
+      <div class="paper-links">
+        <span class="paper-link" onclick="showModal('pdf')">PDF</span>
+        <span class="paper-link" onclick="showModal('cite')">Cite</span>
+        <span class="paper-link" onclick="showModal('doi')">DOI</span>
+      </div>
+    </div>
+
+    <div class="paper-card">
+      <div class="paper-title">"Unified Theory of Quantum Fluffiness: A Non-Perturbative Approach"</div>
+      <div class="paper-authors"><strong>Huzai</strong>, Bearbear &amp; <span class="crack" data-note="🐸 'Froggy' appears to be a plush frog toy. His contributions are listed as 'moral support'.">Froggy</span> (2023)</div>
+      <div class="paper-venue"><em>Physical Review Fuzzy</em>, Letters, <span class="crack" data-note="📖 Physical Review Fuzzy is not a publication of the American Physical Society.">Vol. 131, 021801</span></div>
+      <div class="paper-abstract">We propose a non-perturbative renormalisation group approach to understanding the physical properties of high-fluffiness quantum systems. Our numerical simulations, conducted using a Monte Carlo algorithm running on <span class="crack" data-note="💻 ...this is an iPad with a sticker on it.">a state-of-the-art HPC cluster</span>, reproduce experimental observations with a precision of ±40%.</div>
+      <div class="paper-links">
+        <span class="paper-link" onclick="showModal('pdf')">PDF</span>
+        <span class="paper-link" onclick="showModal('cite')">Cite</span>
+      </div>
+    </div>
+
+    <div class="paper-card">
+      <div class="paper-title">"Beyond the Standard Model: What I Think Is Going On"</div>
+      <div class="paper-authors"><strong>Huzai</strong> (2022) — <span style="color:#c0392b;font-size:12px">Preprint · Under Review</span></div>
+      <div class="paper-venue"><em>arXiv:2203.<span class="crack" data-note="❌ arXiv has no record of this submission.">XXXXX</span></em> [hep-ph]</div>
+      <div class="paper-abstract">This paper argues that most existing theories of fundamental physics are substantially correct, but are missing several key insights that the author has had, mostly late at night while sitting by the window. A complete unification of all four forces is proposed in Appendix B. <span class="crack" data-note="📄 Appendix B is blank.">Appendix B</span> provides full mathematical details. Submitted to <em>Nature Physics</em>. <span class="crack" data-note="📬 When asked about the status, Professor Huzai said 'they are still reviewing it' and changed the subject.">Status: pending.</span></div>
+      <div class="paper-links">
+        <span class="paper-link" onclick="showModal('pdf')">PDF</span>
+        <span class="paper-link" onclick="showModal('cite')">Cite</span>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:24px;font-size:13px;color:var(--text-light);font-style:italic">
+      Full publication list: <span class="crack" data-note="📚 Google Scholar profile not found. A search returns zero results.">Google Scholar profile</span> · <span class="crack" data-note="🔬 ORCID was checked. This ID belongs to a different researcher entirely.">ORCID: 0000-0002-XXXX-XXXX</span>
+    </div>
+  </section>
+
+  <!-- ===== TEACHING ===== -->
+  <section class="tab-panel" id="tab-teaching" role="tabpanel">
+    <div style="float:right;margin:0 0 20px 28px;width:220px;border-radius:4px;overflow:hidden;border:1px solid var(--border)">
+      <img src="photos/ai-blackboard.png" alt="Professor Huzai at the blackboard" style="width:100%;display:block" />
+      <p style="font-size:11px;color:var(--text-light);text-align:center;padding:6px;font-style:italic;background:var(--cream-white)">PHYS 701 lecture, Autumn 2024 <span class="crack" data-note="📸 The board reads 'E = mc²ish'. We have concerns.">· Blackett Building</span></p>
+    </div>
+    <p style="font-family:'EB Garamond',serif;font-size:17px;line-height:1.75;color:var(--text-mid);margin-bottom:28px">
+      Professor Huzai is deeply committed to education and has taught at every level from <span class="crack" data-note="🎓 There is no record of this teaching at Imperial. Or anywhere.">undergraduate to graduate</span>. He believes strongly in "learning by doing, and doing by watching others do, and watching by napping nearby."
+    </p>
+
+    <h2 class="section-title">Current Courses (2024–25)</h2>
+
+    <div class="course-card">
+      <div class="course-header">
+        <span class="course-code">PHYS 701</span>
+        <span class="course-term">Autumn Term · 3 units</span>
+      </div>
+      <div class="course-title">Advanced Quantum Mechanics &amp; Field Theory</div>
+      <div class="course-desc">A rigorous graduate-level treatment of quantum field theory, covering canonical quantisation, path integrals, renormalisation, and <span class="crack" data-note="🤔 This topic does not appear in the standard QFT curriculum. We asked several physicists. They were baffled.">the professor's own bespoke formulation of gauge invariance</span>. Students are expected to have strong mathematical preparation. <span class="crack" data-note="📝 Assessment: 'You will know if you pass. I will tell you directly.'">Assessment by continuous evaluation.</span></div>
+      <div class="testimonial">
+        "Truly one of the most <em>unique</em> physics courses I have ever attended. Professor Huzai has a very distinctive way of explaining things — mostly by staring at you with great intensity until you agree."
+        <cite>— Bearbear, MSc Physics (2023) ⭐⭐⭐⭐⭐</cite>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-header">
+        <span class="course-code">PHYS 402</span>
+        <span class="course-term">Spring Term · 2 units</span>
+      </div>
+      <div class="course-title">Special Topics: Soft Matter &amp; Stuffing Physics</div>
+      <div class="course-desc">An interdisciplinary module exploring the physics of soft, deformable, and fibrous materials. Topics include elastic deformation, thermal fluctuations, and the <span class="crack" data-note="🛌 Three lectures of four were spent on this topic. The rest of the course is 'self-directed'.">thermodynamics of comfortable configurations</span>. Suitable for 3rd-year and above. No prerequisites — "just an open mind and, if possible, a comfortable seat."</div>
+      <div class="testimonial">
+        "I learned more about lying down in this course than in my entire previous education. I mean that as a compliment."
+        <cite>— Unnamed Rabbit, 4th Year Physics (2024) ⭐⭐⭐⭐⭐</cite>
+      </div>
+    </div>
+
+    <div class="course-card">
+      <div class="course-header">
+        <span class="course-code">PHYS 101</span>
+        <span class="course-term">All year · 4 units</span>
+      </div>
+      <div class="course-title">Introduction to Everything: A First Course in Physics</div>
+      <div class="course-desc">Professor Huzai's flagship undergraduate module, enrolling <span class="crack" data-note="🏛️ Imperial's actual first-year cohort is approximately 350 students. No one named 'Huzai' is on the teaching roster.">over 400 students</span> each year. The course covers mechanics, thermodynamics, electromagnetism, and <span class="crack" data-note="👁️ 'Staring' does not appear in the module handbook.">the art of making people feel seen through direct eye contact</span>. Consistently rated as "memorable" on student surveys.</div>
+      <div class="testimonial">
+        "他的眼睛能穿透人的灵魂。我在第一堂课就明白了为什么量子力学是正确的。"
+        <cite>— 李同学，大一物理（2024）⭐⭐⭐⭐⭐</cite>
+      </div>
+    </div>
+
+    <h2 class="section-title">PhD Supervision</h2>
+    <p style="font-size:14px;color:var(--text-mid);margin-bottom:16px">Professor Huzai currently supervises <span class="crack" data-note="🧸 Their names are: Bearbear, Froggy, and Unnamed Rabbit. They are plush toys.">3 doctoral students</span> and 2 postdoctoral researchers. Prospective students are welcome to enquire, though he warns that "the intellectual demands of this lab are considerable."</p>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section class="tab-panel" id="tab-gallery" role="tabpanel">
+    <p style="font-family:'EB Garamond',serif;font-size:17px;line-height:1.75;color:var(--text-mid);margin-bottom:28px">
+      A selection of photographs documenting Professor Huzai's distinguished career, academic activities, and <span class="crack" data-note="😄 The majority of these photos were taken at home, on the sofa, in bed, and on a balcony.">international travels</span>. 他的生活，如他所说，"充实而有意义"。
+    </p>
+
+    <h2 class="section-title">Official &amp; Promotional</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item tall">
+        <img src="photos/ai-desk-portrait.png" alt="Official portrait at desk" />
+        <div class="overlay"><span class="overlay-text">Official faculty portrait · South Kensington, 2024</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="photos/ai-blackboard.png" alt="At the blackboard" />
+        <div class="overlay"><span class="overlay-text"><span class="overlay-text">Teaching. The blackboard says "E = mc²ish" <span class="crack" data-note="🤔 We are concerned about this.">which is fine</span>.</span></span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="photos/ai-desk-2.png" alt="At his desk, Big Ben view" />
+        <div class="overlay"><span class="overlay-text">In the office. The name plaque says "Head of Everything (Obviously)."</span></div>
+      </div>
+      <div class="gallery-item wide">
+        <img src="photos/ai-london-cafe.png" alt="Working in a London café" style="object-position:center 30%" />
+        <div class="overlay"><span class="overlay-text">Working at a café. London Review on the table. Earl Grey. Very serious. · 伦敦咖啡馆工作中</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="photos/ai-cafe-rain.png" alt="Rainy day research" />
+        <div class="overlay"><span class="overlay-text">Writing the next big paper. Or a shopping list. Unclear.</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="photos/ai-awards.png" alt="Awards and achievements" />
+        <div class="overlay"><span class="overlay-text">"1st in the UK · UK Champion · Top Tiger" — self-reported · 本人自述</span></div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Portraits &amp; Crests</h2>
+    <div class="gallery-grid" style="grid-template-columns: repeat(3,1fr)">
+      <div class="gallery-item" style="aspect-ratio:1; background:#f5f0e8">
+        <img src="photos/ai-crest-hz.png" alt="Huzai personal crest" style="object-fit:contain;padding:8px" />
+        <div class="overlay"><span class="overlay-text">Personal coat of arms · "Hz" — commissioned by himself</span></div>
+      </div>
+      <div class="gallery-item" style="aspect-ratio:1; background:#f5f0e8">
+        <img src="photos/ai-medallion.png" alt="Faculty medallion portrait" style="object-fit:contain;padding:4px" />
+        <div class="overlay"><span class="overlay-text">Faculty medallion portrait · for official use</span></div>
+      </div>
+      <div class="gallery-item" style="aspect-ratio:1; background:#0a0a1a">
+        <img src="photos/ai-stained-glass.png" alt="Stained glass portrait" style="object-fit:contain" />
+        <div class="overlay"><span class="overlay-text">Stained glass window · commissioned for the Blackett Building · <span class="crack" data-note="🪟 The building does not have this window.">unveiled 2024</span></span></div>
+      </div>
+      <div class="gallery-item" style="aspect-ratio:1; background:#f5f0e8">
+        <img src="photos/ai-crest-simple.png" alt="Simple crest" style="object-fit:contain;padding:8px" />
+        <div class="overlay"><span class="overlay-text">Early crest design — "a bit too modest" (his words)</span></div>
+      </div>
+      <div class="gallery-item" style="aspect-ratio:1; background:#f5f0e8">
+        <img src="photos/ai-crest-royal.png" alt="Royal crest" style="object-fit:contain;padding:4px" />
+        <div class="overlay"><span class="overlay-text">Final royal crest · crown added at his personal request</span></div>
+      </div>
+      <div class="gallery-item" style="aspect-ratio:1; background:#1a1a1a">
+        <img src="photos/huzai-official.png" alt="Official photo" style="object-fit:cover" />
+        <div class="overlay"><span class="overlay-text">The real Huzai. No glasses, no waistcoat. Still distinguished.</span></div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Candid &amp; Personal</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="photos/huzai-1.jpeg" alt="Huzai portrait" />
+        <div class="overlay"><span class="overlay-text">Portrait session · "I wasn't posing"</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="photos/huzai-2.jpeg" alt="Huzai thinking" />
+        <div class="overlay"><span class="overlay-text">Deep thought · 深度思考中</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="photos/huzai-3.jpeg" alt="Evening" />
+        <div class="overlay"><span class="overlay-text">Late-night research session (the sofa)</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="photos/huzai-4.jpeg" alt="Huzai relaxed" />
+        <div class="overlay"><span class="overlay-text">Between seminars · 研讨会间歇</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="photos/huzai-5.jpeg" alt="On the sofa" />
+        <div class="overlay"><span class="overlay-text">Post-symposium recovery</span></div>
+      </div>
+      <div class="gallery-item wide">
+        <img src="photos/huzai-6.jpeg" alt="Abroad" style="object-position:center 30%" />
+        <div class="overlay"><span class="overlay-text">International fieldwork · location "confidential"</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="photos/huzai-meme.jpeg" alt="Meme moment" />
+        <div class="overlay"><span class="overlay-text">谁说这里不能磨爪啊 — faculty meeting minutes, 2024</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="photos/huzai-7.jpeg" alt="Contemplating" />
+        <div class="overlay"><span class="overlay-text">Keynote prep · staring at the ceiling counts</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="photos/huzai-8.jpeg" alt="Resting" />
+        <div class="overlay"><span class="overlay-text">Resting. Thinking. Same thing. · 休息即思考</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FRIENDS ===== -->
+  <section class="tab-panel" id="tab-friends" role="tabpanel">
+    <p class="friends-intro">
+      "Science is, at its heart, a collaborative endeavour," Professor Huzai has said on several occasions. "I am fortunate to be surrounded by the most brilliant minds of my generation." He then looked fondly at his shelf. The following are his <span class="crack" data-note="🧸 They are plush toys. They are very well-loved.">esteemed colleagues and dear friends</span>.<br /><br />
+      以下是他的好朋友们。（照片稍后上传，虎仔说他们"都在忙"。）
+    </p>
+
+    <h2 class="section-title">Friends &amp; Colleagues</h2>
+    <div class="friends-grid">
+      <div class="friend-card">
+        <div class="friend-photo">
+          <span style="text-align:center;padding:20px;font-size:13px">📷<br/><em>Photo coming soon</em><br/><span style="font-size:11px">（ 朋友说他在睡觉 ）</span></span>
+        </div>
+        <div class="friend-info">
+          <div class="friend-name">Bearbear</div>
+          <div class="friend-species">Species unknown · Manufacturer: unknown</div>
+          <div class="friend-desc">Huzai's longest-standing collaborator and <span class="crack" data-note="🐻 He has been Huzai's colleague for 'since always'. Academic output: zero papers. But excellent company.">co-author on 3 papers</span>. Known for his steadiness and wisdom. Quiet in meetings.</div>
+        </div>
+      </div>
+
+      <div class="friend-card">
+        <div class="friend-photo">
+          <span style="text-align:center;padding:20px;font-size:13px">📷<br/><em>Photo coming soon</em><br/><span style="font-size:11px">（在午睡中，请勿打扰）</span></span>
+        </div>
+        <div class="friend-info">
+          <div class="friend-name">Froggy</div>
+          <div class="friend-species">Plush Frog · Jellycat, approx.</div>
+          <div class="friend-desc">Postdoctoral researcher, specialising in <span class="crack" data-note="🐸 Froggy's actual expertise: being soft and green.">amphibian fluid dynamics</span>. Listed as co-author on the Quantum Fluffiness paper for "moral support and general presence."</div>
+        </div>
+      </div>
+
+      <div class="friend-card">
+        <div class="friend-photo">
+          <span style="text-align:center;padding:20px;font-size:13px">📷<br/><em>Photo coming soon</em><br/><span style="font-size:11px">（想不起名字了）</span></span>
+        </div>
+        <div class="friend-info">
+          <div class="friend-name">Unnamed Rabbit</div>
+          <div class="friend-species">Plush Rabbit · IKEA, probably</div>
+          <div class="friend-desc">PhD student, 4th year, "almost finished." Working on a dissertation titled <em>"Ear Aerodynamics: A Preliminary Investigation."</em> Hasn't submitted yet. <span class="crack" data-note="🐇 The dissertation has not been started, according to sources close to the rabbit.">Almost there.</span></div>
+        </div>
+      </div>
+
+      <div class="friend-card">
+        <div class="friend-photo">
+          <span style="text-align:center;padding:20px;font-size:13px">📷<br/><em>Photo coming soon</em></span>
+        </div>
+        <div class="friend-info">
+          <div class="friend-name">+ Add Friend</div>
+          <div class="friend-species">To be introduced</div>
+          <div class="friend-desc" style="color:var(--text-light);font-style:italic">Professor Huzai's social circle is ever-growing. More friends will be introduced here when their photos arrive.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CV & CONTACT ===== -->
+  <section class="tab-panel" id="tab-contact" role="tabpanel">
+    <div style="display:grid;grid-template-columns:1fr 340px;gap:48px;align-items:start">
+      <div>
+        <h2 class="section-title">Curriculum Vitae</h2>
+
+        <div class="cv-section">
+          <h3 style="font-family:'EB Garamond',serif;font-size:16px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-light);margin-bottom:4px">Education</h3>
+          <div class="cv-entry">
+            <div class="cv-years">2015 – 2019</div>
+            <div>
+              <div class="cv-title-text">DPhil in Theoretical Physics</div>
+              <div class="cv-place">University of Cambridge <span class="crack" data-note="🎓 Cambridge has no record of this. He gets flustered when you bring it up.">· Supervisor: Prof. Stuffingworth</span></div>
+              <div class="cv-note">Thesis: "Everything, Unified: A Complete Theory" <span class="crack" data-note="📄 The thesis repository returns no results for this title.">· (copy available on request)</span></div>
+            </div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-years">2012 – 2015</div>
+            <div>
+              <div class="cv-title-text">BA (Hons) Physics, Starred First</div>
+              <div class="cv-place">University of Oxford <span class="crack" data-note="🙈 Oxford was contacted. Polite silence followed.">· St Huzai's College</span></div>
+            </div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-years">Before 2012</div>
+            <div>
+              <div class="cv-title-text"><span class="redacted">Classified · click to reveal</span></div>
+              <div class="cv-place" style="margin-top:4px">Early education records <span class="crack" data-note="🏷️ A WildRepublic tag was found attached to his ear.">not available for public release</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-section">
+          <h3 style="font-family:'EB Garamond',serif;font-size:16px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-light);margin-bottom:4px">Positions Held</h3>
+          <div class="cv-entry">
+            <div class="cv-years">2019 – present</div>
+            <div>
+              <div class="cv-title-text">Distinguished Professor of Physics</div>
+              <div class="cv-place">Imperial College London</div>
+              <div class="cv-note">Director, Laboratory for Advanced Theoretical Everything</div>
+            </div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-years">2019 – 2021</div>
+            <div>
+              <div class="cv-title-text"><span class="redacted">Classified — click to reveal</span></div>
+              <div class="cv-place">Location: <span class="crack" data-note="🤫 When asked, he said 'it's complicated' and looked out the window for a long time.">Classified</span></div>
+              <div class="cv-note">Nature of role: classified. Outcome: classified. Whether this position existed: <span class="crack" data-note="🔐 We genuinely cannot tell.">unclear</span>.</div>
+            </div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-years">2017 – 2019</div>
+            <div>
+              <div class="cv-title-text">Visiting Scholar</div>
+              <div class="cv-place">MIT · Harvard · <span class="crack" data-note="🏫 One of these is real. We think.">Stanford · every major university, apparently</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cv-section">
+          <h3 style="font-family:'EB Garamond',serif;font-size:16px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-light);margin-bottom:4px">Awards &amp; Honours</h3>
+          <div class="cv-entry">
+            <div class="cv-years">2025</div>
+            <div>
+              <div class="cv-title-text">Scientist of the Year, BAFS</div>
+              <div class="cv-note">British Academy of Fuzzy Sciences <span class="crack" data-note="🏆 We searched extensively. No such institution exists.">· Founded 2024</span></div>
+            </div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-years">2024</div>
+            <div>
+              <div class="cv-title-text">Fellow of the Royal Society</div>
+              <div class="cv-note">Self-nominated. <span class="crack" data-note="🤝 'Self-nomination' is not how FRS elections work. The Royal Society was bemused.">Accepted by the committee.</span></div>
+            </div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-years">2023</div>
+            <div>
+              <div class="cv-title-text">Featherstone Medal</div>
+              <div class="cv-note">For Distinguished Contribution to British Science <span class="crack" data-note="🥇 Medal not found in any official records.">· Value: £5,000</span></div>
+            </div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-years">2022</div>
+            <div>
+              <div class="cv-title-text">OBE <span class="crack" data-note="👑 This is not listed in any official Honours List.">（英帝国勋章）</span></div>
+              <div class="cv-note">For services to science. He has been asked not to list this until it can be verified.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="section-title">Get in Touch</h2>
+        <div class="contact-form-section">
+          <div class="form-row">
+            <label class="form-label" for="c-name">Your Name</label>
+            <input class="form-input" id="c-name" type="text" placeholder="e.g. A Prospective Student" />
+          </div>
+          <div class="form-row">
+            <label class="form-label" for="c-email">Email</label>
+            <input class="form-input" id="c-email" type="email" placeholder="you@example.com" />
+          </div>
+          <div class="form-row">
+            <label class="form-label" for="c-subject">Subject</label>
+            <input class="form-input" id="c-subject" type="text" placeholder="e.g. Research enquiry" />
+          </div>
+          <div class="form-row">
+            <label class="form-label" for="c-msg">Message</label>
+            <textarea class="form-textarea" id="c-msg" placeholder="Dear Professor Huzai..."></textarea>
+          </div>
+          <button class="form-submit" onclick="showModal('contact')">Send Message</button>
+        </div>
+        <p style="font-size:12px;color:var(--text-light);margin-top:10px;font-style:italic">
+          Note: response time varies. Professor Huzai <span class="crack" data-note="📬 Average response time: never. He checks email 'when he feels like it', which is rarely.">aims to respond within 5–7 working days</span>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div>© 2025 Professor Huzai 虎仔 · Imperial College London · Department of Physics</div>
+  <div>South Kensington · London SW7 2AZ · huzai.uk</div>
+  <div style="margin-top:6px;font-size:10px;color:rgba(255,255,255,0.2)">
+    Website designed and maintained by the Professor himself · <a href="#" class="secret-link" onclick="showModal('secret'); return false;">&#9679;</a>
+  </div>
+  <div class="footer-whisper">
+    Product of Wild Republic · Item No. 10982 · Material: polyester fibre &amp; stuffing · Age 3+ · Not a real professor · 玩具，非真实教授，请勿完全相信其学术成就
+  </div>
+</footer>
+
+<!-- ===== MODAL ===== -->
+<div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+  // Tab navigation
+  const tabs = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      window.scrollTo({ top: 0 });
+    });
+  });
+
+  // Redacted reveal
+  document.querySelectorAll('.redacted').forEach(el => {
+    el.addEventListener('click', () => {
+      el.style.background = '#fff8e6';
+      el.style.color = '#3d2800';
+      el.textContent = el.dataset.reveal || '(記録なし / No records found)';
+    });
+  });
+
+  // Modal system
+  const modals = {
+    pdf: {
+      emoji: '😬',
+      title: 'PDF Unavailable',
+      body: 'The full PDF of this paper is currently unavailable. Professor Huzai says the file is "on his other computer." This has been the case since 2022.',
+      note: '论文原稿暂时找不到了。虎仔说他记得放在哪里了，但忘了。'
+    },
+    cite: {
+      emoji: '📝',
+      title: 'Citation Copied',
+      body: 'Huzai, H. (2024). On the thermodynamic efficiency of extended horizontal repose in soft-bodied systems. <em>Journal of Theoretical and Applied Lounging</em>, 14, 1–38.\n\nNote: this journal does not appear to be indexed.',
+      note: '⚠️ We cannot verify that this citation is valid for submission to any academic institution.'
+    },
+    doi: {
+      emoji: '🔗',
+      title: 'DOI Not Found',
+      body: 'The DOI link for this paper (10.XXXX/JTALY.2024.001) returns a 404 error. The publisher\u2019s website also appears to be down. It has been down since we first checked.',
+      note: '链接失效了。虎仔说这是"服务器维护"，已持续两年。'
+    },
+    contact: {
+      emoji: '✉️',
+      title: 'Message Sent!',
+      body: 'Your message has been sent to Professor Huzai. He will read it at his earliest convenience.\n\nExpected response time: 5–7 working days, or possibly never. He says he is very busy.',
+      note: '（虎仔：谢谢。我看到了。我在想。）'
+    },
+    secret: {
+      emoji: '🏷️',
+      title: 'A small disclosure',
+      body: 'This website was built by Professor Huzai himself, using his considerable knowledge of web technologies, which he claims to have pioneered.\n\n<em>Manufacturer: Wild Republic. Material: Polyester fibre fill. Country of origin: China. Not a real professor. He is, however, very clever and very loved.</em>',
+      note: '虎仔说："这不是我的标签。我从来没见过这个标签。"（然后他跑掉了。）'
+    }
+  };
+
+  function showModal(key) {
+    const m = modals[key];
+    if (!m) return;
+    document.getElementById('modal-content').innerHTML = `
+      <div class="modal-emoji">${m.emoji}</div>
+      <div class="modal-title">${m.title}</div>
+      <div class="modal-body">${m.body}</div>
+      <div class="modal-note">${m.note}</div>
+    `;
+    document.getElementById('modal').classList.add('open');
+  }
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+
+</body>
+</html>
